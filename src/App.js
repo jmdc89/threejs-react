@@ -1,10 +1,17 @@
 import './App.css';
 import * as THREE from "three";
-import React, {component} from 'react';
+import React, {Component, component} from 'react';
 
 let scene, camera, renderer, cube;
 
-function init() {
+class App extends Component{
+
+  constructor(props){
+    super(props);
+    this.animate = this.animate.bind(this);
+  }
+
+init() {
   //creating scene
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0x2a3b4c);
@@ -18,7 +25,7 @@ function init() {
   //renderer
   renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
-  document.body.appendChild(renderer.domElement);
+  // document.body.appendChild(renderer.domElement);
 
   //add geometry
   var geometry = new THREE.BoxGeometry();
@@ -29,27 +36,31 @@ function init() {
 
   camera.position.z = 5;
 
-  animate();
+  return renderer.domElement;
 }
 
  //animation
-function animate(){
-  requestAnimationFrame(animate);
+animate(){
+  requestAnimationFrame(this.animate);
 
   cube.rotation.x += 0.01;
   cube.rotation.y += 0.01;
 
   renderer.render(scene, camera);
+}
 
+componentDidMount(){
+  document.getElementById("Render").appendChild(this.init());
+  this.animate();
 }
 
 
-function App() {
+render() {
   return (
-    <div className="App">
-      {init()}
-    </div>
+    <div id="Render" className="App"></div>
   );
+}
+
 }
 
 export default App;
