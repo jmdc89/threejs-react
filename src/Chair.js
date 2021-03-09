@@ -13,11 +13,22 @@ const Model = () => {
   return <primitive object={gltf.scene} dispose={null} />;
 };
 
+const Lights = () => {
+  return (
+  <>
+    <ambientLight intensity={0.3}/>
+    <directionalLight position={[10,10,5]} intensity={0.5}/>
+    {/* <directionalLight position={[0,10,0]} intensity={0.75}/> */}
+    <spotLight intensity={0.75} position={[0,1000,0]}/>
+  </>
+  );
+}
+
 const HTMLContent = () => {
   return (
       <Section factor={1.5} offset={1}>
            <group position={[0,250,0]}>
-             <mesh position={[0,35,0]}>
+             <mesh position={[0,-35,0]}>
                <Model/>
              </mesh>
            <Html fullscreen>
@@ -35,10 +46,10 @@ export default function Chair() {
     <>
       <Header/>
       <Canvas colorManagement camera={{ position: [0,0,120], fov:70}}>
+        <Lights/>
           <Suspense fallback={null}>
              <HTMLContent/>
           </Suspense>
-
       </Canvas>
     </>
   )
