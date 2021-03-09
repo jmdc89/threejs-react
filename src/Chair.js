@@ -1,10 +1,10 @@
-import React, {Suspense} from 'react';
+import React, {Suspense, useRef} from 'react';
 import "./Chair.scss";
 
 //Components
 import Header from "./components/header";
 import {Section} from './components/section';
-import { Canvas } from "react-three-fiber";
+import { Canvas, useFrame } from "react-three-fiber";
 
 import {Html, useGLTF} from "@react-three/drei";
 
@@ -24,11 +24,15 @@ const Lights = () => {
   );
 }
 
-const HTMLContent = () => {
+const HTMLContent = ({children, modelPath, position}) => {
+
+  const ref = useRef();
+  useFrame(() => (ref.current.rotation.y += 0.01));
+
   return (
       <Section factor={1.5} offset={1}>
            <group position={[0,250,0]}>
-             <mesh position={[0,-35,0]}>
+             <mesh ref={ref} position={[0,-35,0]}>
                <Model/>
              </mesh>
            <Html fullscreen>
