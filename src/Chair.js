@@ -75,17 +75,17 @@ export default function Chair() {
              <HTMLContent domContent={domContent} modelPath="/armchairYellow.gltf" positionY={250} bgColor={'#f15946'}>
                 <h1 className='title'>Yellow</h1>
              </HTMLContent>
-              <HTMLContent domContent={domContent} modelPath="/armchairGreen.gltf" positionY={0} bgColor={'#571ec1'}>
+              {/* <HTMLContent domContent={domContent} modelPath="/armchairGreen.gltf" positionY={0} bgColor={'#571ec1'}>
                 <h1 className='title'>Green</h1>
              </HTMLContent>
              <HTMLContent domContent={domContent} modelPath="/armchairGray.gltf" positionY={-250} bgColor={'#636567'}>
                 <h1 className='title'>Gray</h1>
-             </HTMLContent>
+             </HTMLContent> */}
           </Suspense>
       </Canvas>
       <div className='scrollArea' ref={scrollArea} onScroll={onScroll}>
         <div style={{position: 'sticky', top:0}} ref={domContent}></div>
-        <div style={{height: `${state.sections * 100}vh`}}></div>
+        <div style={{height: `${100}vh`}}></div>
       </div>
     </>
   )
